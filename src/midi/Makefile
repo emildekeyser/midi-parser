@@ -1,4 +1,4 @@
-current_files = tests/02-midi/01-primitives/02-channel-show-tests.cpp
+current_files = tests/02-midi/01-primitives/04-note-number-tests.cpp
 
 current:
 	g++ -I. -DTEST_BUILD app.cpp easylogging++.cpp logging.cpp tests/tests.cpp $(current_files)
@@ -17,4 +17,5 @@ cumul_tests:
 		tests/01-io/05-read-variable-length-integer-tests.cpp \
 		tests/02-midi/01-primitives/01-channel-tests.cpp \
 		tests/02-midi/01-primitives/02-channel-show-tests.cpp
+		tests/02-midi/01-primitives/03-instruments-tests.cpp \
 	./cumul.out
