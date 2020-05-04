@@ -15,7 +15,9 @@
 A fairly long explanation follows during which some weird tricks will be performed.
 Do not be intimidated by this: in the end, what you will actually need to *do* is actually quite simple.
 The text below attempts to make you *understand* what it is you're doing.
-We do not expect you to be able to come up with this on your own: instead, the intention is to give you a quick look at some more advanced programming techniques.
+We do not expect you to be able to come up with this on your own: instead, the
+intention is to give you a quick look at some more advanced programming
+techniques.
 ====
 
 The purpose of this section is to break down your preconceptions about types and classes and how you can use them, more specifically:
@@ -433,7 +435,9 @@ bool operator !=(const T& t) const
 All classes sporting a `!=` operator will have this exact definition in it.
 Likewise for the relational operators `<`, `>`, etc.: they are all defined in terms of one central operation.
 
-Some language offer the concept of *traits* and/or *mixins* (there are some differences between them, but the core idea is the same) are auxiliary classes that provide related function definitions that can be "included" in a class.
+Some language offer the concept of *traits* and/or *mixins* (there are some
+differences between them, but the core idea is the same) are auxiliary classes
+that provide related function definitions that can be "included" in a class.
 C++ allows us to fake this using multiple inheritance.
 An example would be (the code has been slightly simplified for the sake of clarity):
 
@@ -507,7 +511,9 @@ This single line of code gives us the following:
 
 == Performance
 
-Those worried that this might negatively impact performance, rest assured: C++ compilers can see that a `Height` is in reality nothing more than a `double` and will compile it as such.
+Those worried that this might negatively impact performance, rest assured: C++
+compilers can see that a `Height` is in reality nothing more than a `double`
+and will compile it as such.
 All typing information exists only at compile time.
 
 C++ offers you the ability to introduce new abstractions without incurring a performance penalty.
