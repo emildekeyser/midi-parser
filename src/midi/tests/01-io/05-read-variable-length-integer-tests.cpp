@@ -7,6 +7,18 @@
 #include <sstream>
 
 
+/* TEST_CASE("Reading variable sized integer from { 0x00 }") */
+/* { */
+/*     /1* char buffer[] = { 0x00 }; *1/ */
+/*     /1* char buffer[] = { 0x00, 0x00, 0x10, char(0xFF), 0x00 }; *1/ */
+/*     char buffer[] = { char(0b10000001), char(0b10000001), char(0b10000001), char(0b00000001) }; */
+/*     std::string data(buffer, sizeof(buffer)); */
+/*     std::stringstream ss(data); */
+/*     auto actual = io::read_variable_length_integer(ss); */
+/*     CATCH_CHECK(true); */
+/* } */
+
+
 TEST_CASE("Reading variable sized integer from { 0x00 }")
 {
     char buffer[] = { 0x00 };
