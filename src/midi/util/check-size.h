@@ -1,6 +1,8 @@
 #ifndef CHECK_SIZE_H
 #define CHECK_SIZE_H
 
+#include <cstdlib>
+
 template<typename T, size_t ExpectedSize, size_t ActualSize=sizeof(T)>
 void check_size()
 {
