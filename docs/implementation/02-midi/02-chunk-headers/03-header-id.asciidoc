@@ -20,4 +20,7 @@ Write a function `header_id` that, given a `CHUNK_HEADER`, extracts the id and r
 ====
 
 TIP: This requires only one line of code.
-Look for the http://www.cplusplus.com/reference/string/string/string/[constructor] that allows you to create a `std::string` from a `char` array. Also remember that arrays are actually just pointers.
+Look for the
+http://www.cplusplus.com/reference/string/string/string/[constructor] that
+allows you to create a `std::string` from a `char` array. Also remember that
+arrays are actually just pointers.

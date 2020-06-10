@@ -20,9 +20,13 @@ A song typically requires a few megabytes of storage room.
 While a couple of megabytes is no big deal today, it certainly was in the past.
 One 3 1/2" floppy disk could contain 1.44MB of data, so a single piece of music would already require multiple disks.
 
-MIDI files have a different approach to storing audio: instead of encoding the actual sound wave, a more abstract representation is used: musical notes.
-In essence, a MIDI file contains such information as "a piano plays https://www.youtube.com/watch?v=pUhBiT4Uiwc[E Eb E Eb B D C A]".
-This description can clearly be encoded using very few bytes (easily less than 100) while it would take around 24,000 bytes in MP3 (assuming a bitrate of 192kbps and a one second duration).
+MIDI files have a different approach to storing audio: instead of encoding the
+actual sound wave, a more abstract representation is used: musical notes.  In
+essence, a MIDI file contains such information as "a piano plays
+https://www.youtube.com/watch?v=pUhBiT4Uiwc[E Eb E Eb B D C A]".  This
+description can clearly be encoded using very few bytes (easily less than 100)
+while it would take around 24,000 bytes in MP3 (assuming a bitrate of 192kbps
+and a one second duration).
 
 However, MIDI files have several disadvantages:
 
@@ -40,7 +44,9 @@ IMPORTANT: Windows makes a distinction between the two, so it will be important 
 A MIDI file is divided into "sections" called *chunks*.
 The first chunk is the *MThd chunk* which contains a description of the further contents of the MIDI file.
 Next comes a series of *MTrk chunks* which represents tracks.
-The division of the music into tracks will not matter to us: we will interpret them simply as "lists of notes" which we will merge together into one single list of notes.
+The division of the music into tracks will not matter to us: we will interpret
+them simply as "lists of notes" which we will merge together into one single
+list of notes.
 Note that tracks do **not** correspond to channels or instruments.
 
 [%header,cols="^",width="20%",align="center",grid=rows,frame=topbot]
@@ -61,10 +67,12 @@ Note that tracks do **not** correspond to channels or instruments.
 [#chunks]
 == Chunks
 
-Each chunk starts with a *chunk header*, which tells you which kind of chunk it is (`MThd` or `MTrk`) and how large it is.
-As far as we can tell, the type of the chunk is redundant: the MIDI file should always contain a single `MThd` chunk followed by one or more ``MTrk``s.
-Maybe the designers added the type to the header in anticipation of other kinds of chunks.
-We will be using this chunk type information solely as a sanity check.
+Each chunk starts with a *chunk header*, which tells you which kind of chunk it
+is (`MThd` or `MTrk`) and how large it is.  As far as we can tell, the type of
+the chunk is redundant: the MIDI file should always contain a single `MThd`
+chunk followed by one or more ``MTrk``s.  Maybe the designers added the type to
+the header in anticipation of other kinds of chunks.  We will be using this
+chunk type information solely as a sanity check.
 
 The chunk header has the following structure:
 
@@ -96,7 +104,8 @@ It has the following structure:
 | division | 2 bytes | Number of units per beat
 |===
 
-The `MThd` chunk always has the same size: the header counts 8 bytes (all chunks have this in common) plus 6 bytes of extra data.
+The `MThd` chunk always has the same size: the header counts 8 bytes (all
+chunks have this in common) plus 6 bytes of extra data.
 The `header.size` will therefore always contain the value 6 (remember that the header is not included in this count.)
 
 The `type` field is either `0`, `1` or `2`.
@@ -496,7 +505,9 @@ Using this trick, we get
 == Running Status
 
 If a MIDI event has the same status byte as the previous event, its status byte can be omitted.
-This does not cause problems reading in the events: all status bytes have their most significant bit set to `1` while all non-status-bytes have `0` as most significant bit.
+This does not cause problems reading in the events: all status bytes have their
+most significant bit set to `1` while all non-status-bytes have `0` as most
+significant bit.
 
 Für Elise can therefore be encoded as follows:
 

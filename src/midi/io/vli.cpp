@@ -1,5 +1,5 @@
-#ifndef VLI_H
-#define VLI_H
+/* #ifndef VLI_H */
+/* #define VLI_H */
 
 #include <memory>
 /* #include <bitset> */
@@ -26,4 +26,4 @@ namespace io
     }
 }
 
-#endif
+/* #endif */

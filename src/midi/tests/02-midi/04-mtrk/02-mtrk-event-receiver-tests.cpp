@@ -18,7 +18,6 @@ namespace
         void program_change(Duration dt, Channel channel, Instrument program) override { }
         void channel_pressure(Duration dt, Channel channel, uint8_t pressure) override { }
         void pitch_wheel_change(Duration dt, Channel channel, uint16_t value) override { }
-
         void meta(Duration dt, uint8_t type, std::unique_ptr<uint8_t[]> data, uint64_t data_size) override { }
         void sysex(Duration dt, std::unique_ptr<uint8_t[]> data, uint64_t data_size) override { }
     };

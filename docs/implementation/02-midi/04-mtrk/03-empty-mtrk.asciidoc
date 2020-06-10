@@ -60,8 +60,9 @@ void midi::read_mtrk(std::istream& in, EventReceiver& receiver)
 
 Since `read_mtrk` is a rather long function (around 70 lines in my own implementation), we'll build it up gradually.
 
-We begin with a simple implementation of `read_mtrk` that can only process an empty MTrk chunk, that is, an MTrk with just an end-of-track event.
-In byte form, an empty MTrk looks like this:
+We begin with a simple implementation of `read_mtrk` that can only process an
+empty MTrk chunk, that is, an MTrk with just an end-of-track event.  In byte
+form, an empty MTrk looks like this:
 
 ----
 M T r k                  MTrk chunk identifier
@@ -69,7 +70,9 @@ M T r k                  MTrk chunk identifier
 0x00 0xFF 0x2F 0x00      End-of-track event
 ----
 
-The end-of-track event, as described in the <<../../../background-information/midi.asciidoc#endoftrack,MIDI background information>>, consists of the following bytes:
+The end-of-track event, as described in the
+<<../../../background-information/midi.asciidoc#endoftrack,MIDI background
+information>>, consists of the following bytes:
 
 * `0x00`: Delta time since last event. It makes little sense to delay this event in time.
 * `0xFF`: Identifier for meta event.

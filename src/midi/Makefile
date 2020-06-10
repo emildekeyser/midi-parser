@@ -1,5 +1,12 @@
 default_sources = app.cpp easylogging++.cpp logging.cpp tests/tests.cpp 
-current_sources := $(default_sources) tests/02-midi/02-chunk-headers/01-chunk-header-tests.cpp
+current_sources := $(default_sources) \
+	midi/chunk-header.cpp \
+	midi/mtrk.cpp \
+	io/endianness.cpp \
+	io/vli.cpp \
+	midi/read-mtrk.cpp \
+	tests/02-midi/04-mtrk/05-mtrk-sysex-tests.cpp
+
 current_objects := $(patsubst %.cpp, %.o, $(current_sources))
 current_deps := $(current_objects:.o=.d)
 
@@ -29,7 +36,16 @@ define cumul_sources
 	tests/02-midi/01-primitives/03-instruments-tests.cpp \
 	tests/02-midi/01-primitives/04-note-number-tests.cpp \
 	tests/02-midi/01-primitives/05-time-tests.cpp \
-	tests/02-midi/02-chunk-headers/01-chunk-header-tests.cpp
+	midi/chunk-header.cpp \
+	tests/02-midi/02-chunk-headers/01-chunk-header-tests.cpp \
+	tests/02-midi/03-mthd/01-mthd-tests.cpp \
+	midi/mthd.cpp \
+	tests/02-midi/03-mthd/02-read-mthd-tests.cpp \
+	midi/mtrk.cpp \
+	tests/02-midi/04-mtrk/01-mtrk-auxiliary-tests.cpp \
+	tests/02-midi/04-mtrk/02-mtrk-event-receiver-tests.cpp \
+	midi/read-mtrk.cpp \
+	tests/02-midi/04-mtrk/03-mtrk-empty-tests.cpp
 endef
 
 cumul_objects := $(patsubst %.cpp, %.o, $(cumul_sources))

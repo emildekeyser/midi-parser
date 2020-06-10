@@ -10,9 +10,12 @@
 
 = Event Receiver
 
-Read up on <<../../../background-information/inversion-of-control#,Inversion of Control>> to understand the purpose of this step.
+Read up on <<../../../background-information/inversion-of-control.asciidoc#,Inversion of
+Control>> to understand the purpose of this step.
 
-To implement this pattern, we need an interface-like class (i.e. only unimplemented virtual member functions) `EventReceiver` that has one member function per type of event.
+To implement this pattern, we need an interface-like class (i.e. only
+unimplemented virtual member functions) `EventReceiver` that has one member
+function per type of event.
 Each member function will be called when the corresponding type of event is encountered in the MIDI file.
 The extra data associated with the event will be provided through parameters.
 

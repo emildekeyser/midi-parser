@@ -10,6 +10,7 @@ namespace io
 	template <typename T>
 	void read_to(std::istream& in, T* buffer, size_t n=1)
 	{
+        /* std::cout << "0x" << std::hex << buffer << "\n"; */
 		in.read(reinterpret_cast<char*>(buffer), sizeof(T) * n);
 		CHECK(!in.fail()) << "failed to read to buffer";
 	}

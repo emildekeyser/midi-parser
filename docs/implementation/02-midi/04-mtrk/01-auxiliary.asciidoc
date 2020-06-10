@@ -16,13 +16,15 @@ We start off with a number of auxiliary functions.
 
 == Event Type Identification
 
-As described in the <<../../../background-information/midi.asciidoc#mtrk,MIDI explanations>>, there are different kinds of events:
+As described in the <<../../../background-information/midi.asciidoc#mtrk,MIDI
+explanations>>, there are different kinds of events:
 
 * System exclusive events
 * Meta events
 * MIDI events
 
-Each event starts with a variable length integer designated the time elapsed since the previous event, followed by a byte that identifies the event.
+Each event starts with a variable length integer designated the time elapsed
+since the previous event, followed by a byte that identifies the event.
 In the case of running status, the status byte can be missing.
 You need to be able to recognize this situation.
 
@@ -39,7 +41,8 @@ Write the following functions:
 == MIDI Events
 
 A MIDI event's status byte can be split up in two nibbles, i.e., chunks of 4 bits.
-The upper nibble identifies the type of MIDI event (note on, note off), the lower nibble indicates on which channel the event takes place.
+The upper nibble identifies the type of MIDI event (note on, note off), the
+lower nibble indicates on which channel the event takes place.
 
 [NOTE,caption={task-caption}]
 ====
@@ -51,7 +54,8 @@ Write the functions
 
 [NOTE,caption={task-caption}]
 ====
-Next, write the following functions that, given the midi event type nibble, check whether it identifies a MIDI event of a specific type.
+Next, write the following functions that, given the midi event type nibble,
+check whether it identifies a MIDI event of a specific type.
 
 * `bool is_note_off(uint8_t status)`
 * `bool is_note_on(uint8_t status)`
