@@ -105,17 +105,17 @@ TEST_CASE("Reading MTrk, running status with different kinds of events")
     char buffer[] = {
         MTRK,
         0x00, 0x00, 0x00, 36, // Length
-        10, NOTE_ON(1, 10, 55),
-        0, NOTE_ON_RS(20, 66),
-        0, NOTE_ON_RS(30, 77),
-        50, NOTE_ON_RS(20, 0),
-        10, CHANNEL_PRESSURE(5, 42),
-        60, CHANNEL_PRESSURE_RS(100),
-        40, NOTE_OFF(1, 30, 0),
-        20, NOTE_OFF_RS(10, 0),
-        40, PITCH_WHEEL_CHANGE(7, 10),
-        25, PITCH_WHEEL_CHANGE_RS(20),
-        END_OF_TRACK
+        10, NOTE_ON(1, 10, 55), // 145 // 4
+        0, NOTE_ON_RS(20, 66), // 145 // 3
+        0, NOTE_ON_RS(30, 77), // 145 // 3
+        50, NOTE_ON_RS(20, 0), // 145 // 3
+        10, CHANNEL_PRESSURE(5, 42), // 213 // 3
+        60, CHANNEL_PRESSURE_RS(100), // 213 // 2
+        40, NOTE_OFF(1, 30, 0), // 129 // 4
+        20, NOTE_OFF_RS(10, 0), // 3
+        40, PITCH_WHEEL_CHANGE(7, 10), // 4
+        25, PITCH_WHEEL_CHANGE_RS(20), // 3
+        END_OF_TRACK // 4
     };
     std::string data(buffer, sizeof(buffer));
     std::stringstream ss(data);

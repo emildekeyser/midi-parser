@@ -17,7 +17,8 @@ namespace midi
 
     bool is_midi_event(uint8_t stat)
 	{
-        return stat >= 0x80 && stat <= 0xEF;
+        /* return stat >= 0x80 && stat <= 0xEF; */
+		return !(is_sysex_event(stat) || is_meta_event(stat) || is_running_status(stat)) && stat != 0xF1;
 	}
 
     bool is_running_status(uint8_t stat)

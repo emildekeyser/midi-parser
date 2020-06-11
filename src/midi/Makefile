@@ -5,7 +5,7 @@ current_sources := $(default_sources) \
 	io/endianness.cpp \
 	io/vli.cpp \
 	midi/read-mtrk.cpp \
-	tests/02-midi/04-mtrk/05-mtrk-sysex-tests.cpp
+	tests/02-midi/04-mtrk/13-mtrk-multiple-events-tests.cpp
 
 current_objects := $(patsubst %.cpp, %.o, $(current_sources))
 current_deps := $(current_objects:.o=.d)
@@ -45,7 +45,16 @@ define cumul_sources
 	tests/02-midi/04-mtrk/01-mtrk-auxiliary-tests.cpp \
 	tests/02-midi/04-mtrk/02-mtrk-event-receiver-tests.cpp \
 	midi/read-mtrk.cpp \
-	tests/02-midi/04-mtrk/03-mtrk-empty-tests.cpp
+	tests/02-midi/04-mtrk/03-mtrk-empty-tests.cpp \
+	tests/02-midi/04-mtrk/04-mtrk-meta-tests.cpp \
+	tests/02-midi/04-mtrk/05-mtrk-sysex-tests.cpp \
+	tests/02-midi/04-mtrk/06-mtrk-note-off-tests.cpp \
+	tests/02-midi/04-mtrk/07-mtrk-note-on-tests.cpp \
+	tests/02-midi/04-mtrk/08-mtrk-polyphonic-tests.cpp \
+	tests/02-midi/04-mtrk/09-mtrk-control-change-tests.cpp \
+	tests/02-midi/04-mtrk/10-mtrk-program-change-tests.cpp \
+	tests/02-midi/04-mtrk/11-mtrk-channel-pressure-tests.cpp \
+	tests/02-midi/04-mtrk/12-mtrk-pitch-wheel-tests.cpp
 endef
 
 cumul_objects := $(patsubst %.cpp, %.o, $(cumul_sources))
