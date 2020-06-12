@@ -47,13 +47,11 @@ void midi::read_mtrk(std::istream& in, EventReceiver& receiver)
             {
                 status_byte = running_status;
                 next_byte = event_identifier;
-                std::cout << "Using running status: " << (int)status_byte << "\n";
             }
             else
             {
                 status_byte = event_identifier;
                 next_byte = io::read<uint8_t>(in);
-                std::cout << "Using new event: " << (int)status_byte << "\n";
             }
 
             uint8_t type = extract_midi_event_type(status_byte);
