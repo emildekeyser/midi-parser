@@ -113,8 +113,8 @@ TEST_CASE("ChannelNoteCollector interprets note on event with velocity 0 as a no
 
     collector.note_on(midi::Duration(100), midi::Channel(0), midi::NoteNumber(50), 72);
     collector.note_on(midi::Duration(200), midi::Channel(0), midi::NoteNumber(40), 75);
-    collector.note_off(midi::Duration(400), midi::Channel(0), midi::NoteNumber(40), 0);
-    collector.note_off(midi::Duration(300), midi::Channel(0), midi::NoteNumber(50), 0);
+    collector.note_on(midi::Duration(400), midi::Channel(0), midi::NoteNumber(40), 0);
+    collector.note_on(midi::Duration(300), midi::Channel(0), midi::NoteNumber(50), 0);
 
     CATCH_REQUIRE(notes.size() == 2);
     CATCH_CHECK(notes[0] == midi::NOTE(midi::NoteNumber(40), midi::Time(300), midi::Duration(400), 75, midi::Instrument(0)));

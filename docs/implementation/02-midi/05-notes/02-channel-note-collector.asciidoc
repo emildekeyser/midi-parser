@@ -119,7 +119,7 @@ Make sure you understand all the details:
 * The first event occurs only after 555 time units, which impacts all following events.
   This explains why the note starts at 555.
 * The duration of the note corresponds to the difference in time between the note on and note off events, that is, 100 time units.
-* THe instrument is determined by the program change event which takes place on the same channel as the note on/off events.
+* The instrument is determined by the program change event which takes place on the same channel as the note on/off events.
 * The note number and velocity come from the note on/off events.
 
 The default instrument is `0`, so if no `program_change` event occurred, `0` is the instrument that should be assigned to all subsequent notes.

@@ -1,6 +1,17 @@
 default_sources = app.cpp easylogging++.cpp logging.cpp tests/tests.cpp 
 current_sources := $(default_sources) \
-	tests/02-midi/05-notes/02-channel-note-collector-tests.cpp
+	io/endianness.cpp \
+	io/vli.cpp \
+	midi/time.cpp \
+	midi/chunk-header.cpp \
+	midi/mthd.cpp \
+	midi/mtrk.cpp \
+	midi/read-mtrk.cpp \
+	midi/channel-note-collector.cpp \
+	midi/event-multicaster.cpp \
+	midi/note-collector.cpp \
+	midi/read-notes.cpp \
+	tests/02-midi/05-notes/05-read-notes-tests.cpp
 
 current_objects := $(patsubst %.cpp, %.o, $(current_sources))
 current_deps := $(current_objects:.o=.d)
@@ -51,7 +62,13 @@ define cumul_sources
 	tests/02-midi/04-mtrk/11-mtrk-channel-pressure-tests.cpp \
 	tests/02-midi/04-mtrk/12-mtrk-pitch-wheel-tests.cpp \
 	tests/02-midi/04-mtrk/13-mtrk-multiple-events-tests.cpp \
-	tests/02-midi/05-notes/01-note-tests.cpp
+	tests/02-midi/05-notes/01-note-tests.cpp \
+	midi/channel-note-collector.cpp \
+	tests/02-midi/05-notes/02-channel-note-collector-tests.cpp \
+	midi/event-multicaster.cpp \
+	midi/note-collector.cpp \
+	tests/02-midi/05-notes/03-event-multicaster-tests.cpp \
+	tests/02-midi/05-notes/04-note-collector-tests.cpp
 endef
 
 cumul_objects := $(patsubst %.cpp, %.o, $(cumul_sources))
