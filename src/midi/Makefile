@@ -1,5 +1,7 @@
-default_sources = app.cpp easylogging++.cpp logging.cpp tests/tests.cpp 
-current_sources := $(default_sources) \
+current_sources := app.cpp easylogging++.cpp logging.cpp tests/tests.cpp \
+	imaging/bitmap.cpp \
+	imaging/bmp-format.cpp \
+	imaging/color.cpp \
 	io/endianness.cpp \
 	io/vli.cpp \
 	midi/time.cpp \
@@ -10,25 +12,25 @@ current_sources := $(default_sources) \
 	midi/channel-note-collector.cpp \
 	midi/event-multicaster.cpp \
 	midi/note-collector.cpp \
-	midi/read-notes.cpp \
-	tests/02-midi/05-notes/05-read-notes-tests.cpp
+	midi/read-notes.cpp
 
 current_objects := $(patsubst %.cpp, %.o, $(current_sources))
 current_deps := $(current_objects:.o=.d)
 
-current_tests.out: $(current_objects)
-	g++ -o current_tests.out $(current_objects)
+midi.out: $(current_objects)
+	g++ -o midi.out $(current_objects)
 
 -include $(current_deps)
 
 %.o: %.cpp
-	g++ -I. -DTEST_BUILD -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
+	g++ -I. -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
+	# g++ -I. -DTEST_BUILD -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
 
 autorun:
-	entr -s 'date; sleep 0.5; ./current_tests.out' <<< current_tests.out
+	entr -s 'date; sleep 0.5; ./midi.out' <<< midi.out
 
 define cumul_sources
-	$(default_sources) \
+	app.cpp easylogging++.cpp logging.cpp tests/tests.cpp \
 	io/endianness.cpp \
 	io/vli.cpp \
 	tests/01-io/01-endianness-tests.cpp \
@@ -68,7 +70,9 @@ define cumul_sources
 	midi/event-multicaster.cpp \
 	midi/note-collector.cpp \
 	tests/02-midi/05-notes/03-event-multicaster-tests.cpp \
-	tests/02-midi/05-notes/04-note-collector-tests.cpp
+	tests/02-midi/05-notes/04-note-collector-tests.cpp \
+	midi/read-notes.cpp \
+	tests/02-midi/05-notes/05-read-notes-tests.cpp
 endef
 
 cumul_objects := $(patsubst %.cpp, %.o, $(cumul_sources))
