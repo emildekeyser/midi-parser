@@ -82,9 +82,10 @@ void render(Parameters params)
     std::ifstream ifs(params.midifile);
     std::vector<midi::NOTE> notes = midi::read_notes(ifs);
 
+    double scale = (double) params.scale / 100.0;
     auto   color_init          = [](Position p){return imaging::Color(0, 0, 0); };
     double total_heigth        = gen_total_height(notes);
-    auto   bitmap              = imaging::Bitmap(params.width, total_heigth + params.height, color_init);
+    auto   bitmap              = imaging::Bitmap(params.width, (total_heigth + params.height) * scale, color_init);
     auto   colors              = gen_colors(notes);
     auto   low_high_notes_pair = gen_low_high_notes(notes);
     double low                 = low_high_notes_pair.first;
@@ -96,9 +97,9 @@ void render(Parameters params)
         if (params.verbose)
             std::cout << note << "\n";
 
-        double height = value(note.duration);
+        double height = value(note.duration) * scale;
         double x      = (value(note.note_number) - low) * width;
-        double y      = value(note.start);
+        double y      = value(note.start) * scale;
         auto   color  = colors[value(note.instrument)];
         auto   slice  = bitmap.slice(x, y, width, height);
         auto   offset = Position(x, y);

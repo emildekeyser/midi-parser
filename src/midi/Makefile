@@ -26,9 +26,9 @@ midi.out: $(current_objects)
 -include $(current_deps)
 
 cache/%.o: %.cpp
-	$(create_cache_dirs)
-	# g++ -I. -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
-	g++ -I. -DTEST_BUILD -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
+	@$(create_cache_dirs)
+	g++ -I. -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
+	# g++ -I. -DTEST_BUILD -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
 
 autorun:
 	entr -s 'date; sleep 0.5; ./midi.out' <<< midi.out
