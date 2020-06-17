@@ -1,21 +1,40 @@
+help:
+	@echo '       :::    ::: :::::::::: :::        ::::::::: '
+	@echo '      :+:    :+: :+:        :+:        :+:    :+: '
+	@echo '     +:+    +:+ +:+        +:+        +:+    +:+  '
+	@echo '    +#++:++#++ +#++:++#   +#+        +#++:++#+    '
+	@echo '   +#+    +#+ +#+        +#+        +#+           '
+	@echo '  #+#    #+# #+#        #+#        #+#            '
+	@echo ' ###    ### ########## ########## ###             '
+	@echo
+	@echo 'Take a look inside the Makefile and comment/delete this helptekst to start using it.'
+	@echo
+	@echo '$$ make ==> compile "current sources" into midi.out binary.'
+	@echo
+	@echo '$$ make autorun ==> watch midi.out with entr for recompilation and run it (easy way to quickly check your tests).'
+	@echo
+	@echo 'IMPORTANT: comment toggle the g++ command in the .cpp to .o target when you start implementing rendering (you are not making a test build at that point).'
+	@echo
+	@echo 'ALSO IMPORTANT: check that you always add all needed .cpp file to "current sources" otherwise you will get weird linker errors.'
+	@echo
+	@echo 'ALSO IMPORTANT: run make clean when switching between TEST_BUILD and the rendering build.'
+	@echo
+	@echo 'TIP: when you finish with a set of tests, move all .cpp files involved to the "cumul sources" variable. This unlocks the ability to do regression testing once in a while.'
+	@echo
+	@echo 'NOTE: .d, .o and .out files are gitignored by default.'
+
+# Why ?
+# This makefile is designed to effciently (re)build just the part of the sources needed.
+# We do this by using .d and .o files stored in the cache directory.
+# It is a bit complex and could be simplified slightly by not using a cache directory.
+# Using the cache directory unclutters the source directories though, so it is very nice imo.
+# If anyone has a better (simpeler) way to do this I would be very interested to know about it.
+# emildekeyser@protonmail.ch
+
 current_sources := easylogging++.cpp logging.cpp tests/tests.cpp \
 	app.cpp \
 	io/endianness.cpp \
-	io/vli.cpp \
-	midi/time.cpp \
-	midi/chunk-header.cpp \
-	midi/mthd.cpp \
-	midi/mtrk.cpp \
-	midi/read-mtrk.cpp \
-	midi/channel-note-collector.cpp \
-	midi/event-multicaster.cpp \
-	midi/note-collector.cpp \
-	midi/read-notes.cpp \
-	imaging/bitmap.cpp \
-	imaging/bmp-format.cpp \
-	imaging/color.cpp \
-	shell/command-line-parser.cpp \
-	render.cpp
+	tests/01-io/01-endianness-tests.cpp
 
 current_objects := $(patsubst %.cpp, cache/%.o, $(current_sources))
 current_deps := $(current_objects:.o=.d)
@@ -27,8 +46,8 @@ midi.out: $(current_objects)
 
 cache/%.o: %.cpp
 	@$(create_cache_dirs)
-	g++ -I. -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
-	# g++ -I. -DTEST_BUILD -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
+	@# g++ -I. -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
+	g++ -I. -DTEST_BUILD -MMD -MF $(patsubst %.o,%.d,$@) -o $@ -c $< 
 
 autorun:
 	entr -s 'date; sleep 0.5; ./midi.out' <<< midi.out
@@ -98,20 +117,3 @@ clean:
 	$(RM) midi.out cumul_tests.out
 
 .PHONY: autorun clean render
-
-
-# io/endianness.cpp \
-# io/vli.cpp \
-# midi/time.cpp \
-# midi/chunk-header.cpp \
-# midi/mthd.cpp \
-# midi/mtrk.cpp \
-# midi/read-mtrk.cpp \
-# midi/channel-note-collector.cpp \
-# midi/event-multicaster.cpp \
-# midi/note-collector.cpp \
-# midi/read-notes.cpp \
-# imaging/bitmap.cpp \
-# imaging/bmp-format.cpp \
-# imaging/color.cpp \
-# shell/command-line-parser.cpp

@@ -26,6 +26,9 @@ void midi::ChannelNoteCollector::note_on(Duration duration, Channel channel, Not
 
 void midi::ChannelNoteCollector::note_off(Duration duration, Channel channel, NoteNumber note_number, uint8_t velocity)
 {
+    if (channel == this->_channel && (_notes.empty() || this->_notes[note_number].velocity == 0))
+        return;
+
     this->_current_time += duration;
     if (channel == this->_channel)
     {
