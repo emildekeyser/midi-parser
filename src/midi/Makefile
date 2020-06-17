@@ -7,7 +7,7 @@ help:
 	@echo '  #+#    #+# #+#        #+#        #+#            '
 	@echo ' ###    ### ########## ########## ###             '
 	@echo
-	@echo 'Take a look inside the Makefile and comment/delete this helptekst to start using it.'
+	@echo 'Take a look inside the Makefile and comment/delete this helptext to start using it.'
 	@echo
 	@echo '$$ make ==> compile "current sources" into midi.out binary.'
 	@echo
@@ -15,7 +15,7 @@ help:
 	@echo
 	@echo 'IMPORTANT: comment toggle the g++ command in the .cpp to .o target when you start implementing rendering (you are not making a test build at that point).'
 	@echo
-	@echo 'ALSO IMPORTANT: check that you always add all needed .cpp file to "current sources" otherwise you will get weird linker errors.'
+	@echo 'ALSO IMPORTANT: check that you always add all needed .cpp files to "current sources" otherwise you will get weird linker errors.'
 	@echo
 	@echo 'ALSO IMPORTANT: run make clean when switching between TEST_BUILD and the rendering build.'
 	@echo
@@ -24,11 +24,11 @@ help:
 	@echo 'NOTE: .d, .o and .out files are gitignored by default.'
 
 # Why ?
-# This makefile is designed to effciently (re)build just the part of the sources needed.
+# This makefile is designed to efficiently (re)build just the part of the sources needed.
 # We do this by using .d and .o files stored in the cache directory.
 # It is a bit complex and could be simplified slightly by not using a cache directory.
 # Using the cache directory unclutters the source directories though, so it is very nice imo.
-# If anyone has a better (simpeler) way to do this I would be very interested to know about it.
+# If anyone has a better (simpler) way to do this I would be very interested to know about it.
 # emildekeyser@protonmail.ch
 
 current_sources := easylogging++.cpp logging.cpp tests/tests.cpp \
@@ -109,7 +109,7 @@ render:
 	mkdir -p outimg
 	ffmpeg -pattern_type glob -i 'outimg/*.bmp' -c:v libx264 -r 30 -pix_fmt yuv420p movie.mp4
 
-# Creates clone of directory strucure in cache needed for neat creation ov .d and .o files
+# Creates clone of directory structure in cache needed for neat creation ov .d and .o files
 create_cache_dirs = [ -d cache ] || find -type d | sed 's/\./cache/' | xargs mkdir -p
 
 clean:
