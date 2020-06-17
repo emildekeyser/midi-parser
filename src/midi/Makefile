@@ -12,7 +12,9 @@ current_sources := app.cpp easylogging++.cpp logging.cpp tests/tests.cpp \
 	midi/channel-note-collector.cpp \
 	midi/event-multicaster.cpp \
 	midi/note-collector.cpp \
-	midi/read-notes.cpp
+	midi/read-notes.cpp \
+	shell/command-line-parser.cpp \
+	render.cpp
 
 current_objects := $(patsubst %.cpp, %.o, $(current_sources))
 current_deps := $(current_objects:.o=.d)
@@ -80,6 +82,10 @@ cumul_deps := $(cumul_objects:.o=.d)
 
 cumul_tests.out: $(cumul_objects)
 	g++ -o cumul_tests.out $(cumul_objects)
+
+render:
+	# ./midi.out
+	ffmpeg -pattern_type glob -i 'outimg/*.bmp' -c:v libx264 -r 30 -pix_fmt yuv420p movie.mp4
 
 clean:
 	$(RM) $(current_objects)
